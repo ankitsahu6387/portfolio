@@ -1,10 +1,11 @@
 :root {
-    --primary: #6c63ff;
-    --secondary: #47bb15;
-    --dark: #333;
-    --light: #fff7ed;
-    --gray: #6c757d;
+    --primary: #3a86ff;    /* Fresh professional blue */
+    --secondary: #00aa30; /* Warm coral for highlights */
+    --dark: #222831;      /* Rich dark gray for text */
+    --light: #f9f9f9;     /* Soft neutral background */
+    --gray: #6c757d;      /* Subtle muted gray for secondary text */
 }
+
 
 * {
     margin: 0;
@@ -69,12 +70,29 @@ nav {
 }
 
 .nav-links a {
+    position: relative;
     color: var(--dark);
     font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px; /* distance below text */
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
     color: var(--primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .hamburger {
@@ -88,7 +106,7 @@ nav {
     height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%), url('/api/placeholder/1920/1080') center/cover;
+    background: linear-gradient(135deg, #d2d2d2b8 0%, rgba(255, 255, 255, 0.7) 100%), url('/api/placeholder/1920/1080') center/cover;
     margin-top: 70px;
 }
 

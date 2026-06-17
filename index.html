@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <div class="ambient-bg" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <!-- Header -->
     <header>
         <div class="container">
@@ -41,9 +46,14 @@
                 <div class="hero-text">
                     <span class="eyebrow">Java Full Stack Developer</span>
                     <h1>Hi, I'm <span>Ankit Sahu</span></h1>
-                    <p class="hero-role">Spring Boot, Angular, Microservices & Data-driven Web Apps</p>
+                    <p class="hero-role"><span id="typed-role">Spring Boot, Angular, Microservices & Data-driven Web Apps</span></p>
                     <p>I build clean, scalable applications with strong backend logic, thoughtful frontend experiences,
                         and practical data insights for real-world products.</p>
+                    <div class="hero-pills">
+                        <span><i class="fas fa-server"></i> Backend APIs</span>
+                        <span><i class="fas fa-code-branch"></i> Microservices</span>
+                        <span><i class="fas fa-chart-line"></i> Analytics</span>
+                    </div>
                     <div class="hero-actions">
                         <a href="#projects" class="btn"><i class="fas fa-layer-group"></i> View Projects</a>
                         <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
@@ -67,6 +77,29 @@
   focus: "scalable full-stack products",
   status: "open to opportunities"
 };</code></pre>
+                    <div class="terminal-line"><span>$</span> deploy --ready</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="specialization">
+        <div class="container">
+            <div class="specialization-grid">
+                <div>
+                    <i class="fas fa-diagram-project"></i>
+                    <h3>System Design Mindset</h3>
+                    <p>Clean APIs, modular services, and maintainable product architecture.</p>
+                </div>
+                <div>
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Full Stack Delivery</h3>
+                    <p>Spring Boot backends connected with Angular and responsive interfaces.</p>
+                </div>
+                <div>
+                    <i class="fas fa-database"></i>
+                    <h3>Data Practicality</h3>
+                    <p>SQL, dashboards, and insight-focused features for real use cases.</p>
                 </div>
             </div>
         </div>
@@ -146,8 +179,12 @@
                     </div>
                     <div class="project-content">
                         <h3>IPL Cricket Analysis</h3>
-                        <p>A comprehensive data analysis platform for IPL cricket stats, providing insights,
-                            visualizations, and predictions.</p>
+                        <p>A cricket analytics platform that helps evaluate IPL player performance through match stats,
+                            trends, visual insights, and prediction-focused analysis.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-lightbulb"></i> Insight Analysis</span>
+                            <span><i class="fas fa-chart-line"></i> Performance Prediction</span>
+                        </div>
                         <div class="tech-stack">
                             <span class="tech">React</span>
                             <span class="tech">JavaScript</span>
@@ -170,10 +207,15 @@
                     <div class="project-content">
                         <h3>HireConnect</h3>
                         <p>A unified job portal application that connects employers and job seekers with a modern UI and robust backend.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-briefcase"></i> Job Portal</span>
+                            <span><i class="fas fa-cubes"></i> Services</span>
+                        </div>
                         <div class="tech-stack">
                             <span class="tech">Spring Boot</span>
                             <span class="tech">Microservices</span>
                             <span class="tech">Angular</span>
+                            <span class="tech">MySQL</span>
                         </div>
                         <div class="project-links">
                             <a href="https://hireconnectapp.onrender.com" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
@@ -192,6 +234,10 @@
                         <h3>Focus Buddy</h3>
                         <p> A productivity tool that tracks the user's face via a webcam and minimizes distractions of
                             the user while studying or working.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-eye"></i> Webcam Tracking</span>
+                            <span><i class="fas fa-bolt"></i> Productivity</span>
+                        </div>
                         <div class="tech-stack">
                             <span class="tech">React</span>
                             <span class="tech">TypeScript</span>
@@ -222,7 +268,7 @@
                         <i class="fas fa-trophy"></i>
                     </div>
                     <h3>S3(Summer Synergy Showcase)</h3>
-                    <p>Second place in the Summer Synergy Showcase (S3) Competetion</p>
+                    <p>Second place in the Summer Synergy Showcase (S3) Competition</p>
                 </div>
 
                 <div class="achievement-card">
@@ -371,6 +417,45 @@
                 }
             });
         });
+        const typedRole = document.querySelector('#typed-role');
+        const roles = [
+            'Spring Boot, Angular, Microservices & Data-driven Web Apps',
+            'REST APIs, SQL, Docker & Production-minded UI',
+            'Java Full Stack Developer building useful products'
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeRole() {
+            const currentRole = roles[roleIndex];
+            typedRole.textContent = currentRole.slice(0, charIndex);
+
+            if (!deleting && charIndex < currentRole.length) {
+                charIndex++;
+                setTimeout(typeRole, 42);
+                return;
+            }
+
+            if (!deleting && charIndex === currentRole.length) {
+                deleting = true;
+                setTimeout(typeRole, 1400);
+                return;
+            }
+
+            if (deleting && charIndex > 0) {
+                charIndex--;
+                setTimeout(typeRole, 22);
+                return;
+            }
+
+            deleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(typeRole, 240);
+        }
+
+        typeRole();
+
         const contactForm = document.querySelector('#contact form');
         contactForm.addEventListener('submit', function () {
             setTimeout(() => {
@@ -378,7 +463,7 @@
             }, 0); // Slight delay to allow submission
         });
 
-        const animatedItems = document.querySelectorAll('section, .project-card, .achievement-card, .skill-category');
+        const animatedItems = document.querySelectorAll('section, .specialization-grid > div, .project-card, .achievement-card, .skill-category');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
